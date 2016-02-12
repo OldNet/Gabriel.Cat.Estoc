@@ -19,7 +19,7 @@ namespace TestEstocConsola
             Producte producte = new Producte("ProvaIDProducte234", "ProvaCategoria", "ProvaUnitat", new TimeSpan(4, 3, 2, 1), new TimeSpan(1, 0, 0, 0), new TimeSpan(1, 2, 3, 4), new Recepta(), 5, 100);
             control.Afegir((ObjecteSql)producte.ReceptaOriginal);//doy de alta la receta sinReceta
             control.Afegir((ObjecteSql)producte);
-            Assert.AreEqual(true, bdProves.ConsultaSiExisteix(producte.StringConsultaSql()));//si esta bien!!
+            Assert.AreEqual(true, bdProves.CompruebaSiFunciona(producte.StringConsultaSql()));//si esta bien!!
 
 
         }
@@ -31,7 +31,7 @@ namespace TestEstocConsola
             control.Afegir((ObjecteSql)producte.ReceptaOriginal);//doy de alta la receta sinReceta
             control.Afegir((ObjecteSql)producte);//lo doy de alta
             producte.OnBaixa();//lo doy de baja
-            Assert.AreEqual(false, bdProves.ConsultaSiExisteix(producte.StringConsultaSql()));//si esta bien!!
+            Assert.AreEqual(false, bdProves.CompruebaSiFunciona(producte.StringConsultaSql()));//si esta bien!!
         }
         [TestMethod]
         public void ActualitzarDadesProducte()
@@ -219,7 +219,7 @@ namespace TestEstocConsola
             control.Afegir((ObjecteSql)unitat.Producte.ReceptaOriginal);
             control.Afegir((ObjecteSql)unitat.Producte);//doy de alta el producto
             control.Afegir(unitat);//doy de alta la unidad
-            Assert.AreEqual(true, bdProves.ConsultaSiExisteix(unitat.StringConsultaSql()));
+            Assert.AreEqual(true, bdProves.CompruebaSiFunciona(unitat.StringConsultaSql()));
         }
         [TestMethod]
         public void DonarDeBaixaUnitatDonantDeBaixaElProducte()
@@ -229,7 +229,7 @@ namespace TestEstocConsola
             control.Afegir((ObjecteSql)unitat.Producte);
             control.Afegir(unitat);
             unitat.Producte.OnBaixa();//tiene que dar de baja todas sus unidades 
-            Assert.AreEqual(false, bdProves.ConsultaSiExisteix(unitat.StringConsultaSql()));
+            Assert.AreEqual(false, bdProves.CompruebaSiFunciona(unitat.StringConsultaSql()));
         }
         [TestMethod]
         public void DonarDeBaixaUnitatProducte()
@@ -239,7 +239,7 @@ namespace TestEstocConsola
             control.Afegir((ObjecteSql)unitat.Producte);
             control.Afegir(unitat);
             unitat.OnBaixa();
-            Assert.AreEqual(false, bdProves.ConsultaSiExisteix(unitat.StringConsultaSql()));
+            Assert.AreEqual(false, bdProves.CompruebaSiFunciona(unitat.StringConsultaSql()));
         }
         [TestMethod]
         public void ActualitzarDadesUnitatProducte()
@@ -269,7 +269,7 @@ namespace TestEstocConsola
         {
             Recepta recepta = new Recepta("ProvaRecepta");
             control.Afegir((ObjecteSql)recepta);
-            Assert.AreEqual(true, bdProves.ConsultaSiExisteix(recepta.StringConsultaSql()));
+            Assert.AreEqual(true, bdProves.CompruebaSiFunciona(recepta.StringConsultaSql()));
         }
         [TestMethod]
         public void DonarDeBaixaRecepta()
@@ -277,7 +277,7 @@ namespace TestEstocConsola
             Recepta recepta = new Recepta("ProvaRecepta2");
             control.Afegir((ObjecteSql)recepta);
             recepta.OnBaixa();
-            Assert.AreEqual(false, bdProves.ConsultaSiExisteix(recepta.StringConsultaSql()));
+            Assert.AreEqual(false, bdProves.CompruebaSiFunciona(recepta.StringConsultaSql()));
         }
         [TestMethod]
         public void ActualitzarRecepta()
@@ -286,7 +286,7 @@ namespace TestEstocConsola
             control.Afegir((ObjecteSql)recepta);
             recepta.PrimaryKey = "ProvaReceptaACtualitzacio";
             control.ComprovaActualitzacions(recepta);
-            Assert.AreEqual(true, bdProves.ConsultaSiExisteix(recepta.StringConsultaSql()));
+            Assert.AreEqual(true, bdProves.CompruebaSiFunciona(recepta.StringConsultaSql()));
         }
         #endregion
 
@@ -301,7 +301,7 @@ namespace TestEstocConsola
             control.Afegir((ObjecteSql)ingredient.Producte.ReceptaOriginal);
             control.Afegir((ObjecteSql)ingredient.Producte);
             control.Afegir((ObjecteSql)ingredient);
-            Assert.AreEqual(true, bdProves.ConsultaSiExisteix(ingredient.StringConsultaSql()));
+            Assert.AreEqual(true, bdProves.CompruebaSiFunciona(ingredient.StringConsultaSql()));
         }
         [TestMethod]
         public void DonarDeBaixaIngredient()
@@ -313,7 +313,7 @@ namespace TestEstocConsola
             control.Afegir((ObjecteSql)ingredient.Producte);
             control.Afegir((ObjecteSql)ingredient);
             ingredient.OnBaixa();
-            Assert.AreEqual(false, bdProves.ConsultaSiExisteix(ingredient.StringConsultaSql()));
+            Assert.AreEqual(false, bdProves.CompruebaSiFunciona(ingredient.StringConsultaSql()));
         }
         [TestMethod]
         public void DonarDeBaixaIngredientDonantDeBaixaRecepta()
@@ -325,7 +325,7 @@ namespace TestEstocConsola
             control.Afegir((ObjecteSql)ingredient.Producte);
             control.Afegir((ObjecteSql)ingredient);
             recepta.OnBaixa();
-            Assert.AreEqual(false, bdProves.ConsultaSiExisteix(ingredient.StringConsultaSql()));
+            Assert.AreEqual(false, bdProves.CompruebaSiFunciona(ingredient.StringConsultaSql()));
         }
         [TestMethod]
         public void ActualitzarDadesIngredient()

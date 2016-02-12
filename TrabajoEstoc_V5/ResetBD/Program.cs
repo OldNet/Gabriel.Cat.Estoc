@@ -11,8 +11,7 @@ namespace ResetBD
         static void Main(string[] args)
         {
             Control control= new Control();
-            control.Drops();
-            control.Creates();
+            control.Reset();
         }
     }
 }
