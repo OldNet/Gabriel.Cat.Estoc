@@ -10,22 +10,23 @@ using System;
 
 namespace Estoc
 {
-	/// <summary>
-	/// Description of Control.
-	/// </summary>
-	public class Control:Gabriel.Cat.ControlObjectesSql
-	{
-		public Control():this(new Gabriel.Cat.BaseDeDadesMySQL())
-		{
-		}
-		public Control(Gabriel.Cat.BaseDeDades bd):base(bd,new string[] { Recepta.CreateTable(), Producte.CreateTable(), UnitatProducte.CreateTable(), Ingredient.CreateTable() })
-		{
-		}
+    /// <summary>
+    /// Description of Control.
+    /// </summary>
+    public class Control : Gabriel.Cat.ControlObjectesSql
+    {
+        static readonly string[] creates = new string[] { Recepta.CreateTable(), Producte.CreateTable(), UnitatProducte.CreateTable(), Ingredient.CreateTable() };
+        public Control() : this(new Gabriel.Cat.BaseDeDadesMySQL())
+        {
+        }
+        public Control(Gabriel.Cat.BaseDeDades bd) : base(bd, creates)
+        {
+        }
 
-		#region implemented abstract members of ControlObjectesSql
+        #region implemented abstract members of ControlObjectesSql
 
-		public override dynamic Restaurar()
-		 {
+        public override dynamic Restaurar()
+        {
             Estoc estocDessat = new Estoc();
             try
             {
@@ -37,9 +38,9 @@ namespace Estoc
                 estocDessat.Afegir(productes);
                 //poso els objectes en el control!
                 Afegir(receptes);
-               for(int i=0;i<receptes.Length;i++)
-                	foreach(Ingredient ingredient in receptes[i])
-                		Afegir(ingredient);
+                for (int i = 0; i < receptes.Length; i++)
+                    foreach (Ingredient ingredient in receptes[i])
+                        Afegir(ingredient);
                 Afegir(productes);
                 Afegir(unitats);
             }
@@ -47,6 +48,6 @@ namespace Estoc
             return estocDessat;
         }
 
-		#endregion
-	}
+        #endregion
+    }
 }
